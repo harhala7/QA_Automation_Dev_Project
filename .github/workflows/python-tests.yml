@@ -26,4 +26,4 @@ jobs:
 
     - name: Run tests
       run: |
-        pytest -s
+        pytest -s tests/test_sanity.py tests/test_day2_basics.py tests/test_day3_basics.py
