@@ -1,3 +1,5 @@
+[![API Tests](https://github.com/harhala7/QA_Automation_Dev_Project/actions/workflows/api-tests.yml/badge.svg)](https://github.com/harhala7/QA_Automation_Dev_Project/actions/workflows/api-tests.yml)
+
 QA Automation Dev Project – Saucedemo
 Python + Selenium + pytest + Page Object Model (POM)
 
