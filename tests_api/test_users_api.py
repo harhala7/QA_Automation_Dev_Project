@@ -66,3 +66,26 @@ def test_get_invalid_user_ids_return_404(base_url, user_id):
     url = f"{base_url}/users/{user_id}"
     response = requests.get(url)
     assert response.status_code == 404
+
+def test_create_user_without_email_mock_api_accepts_payload(base_url):
+    url = f"{base_url}/users"
+
+    payload = {
+        "name": "Invalid User",
+        "username": "invalid_user"
+        # email intentionally missing (JSONPlaceholder is a mock API)
+    }
+
+    response = requests.post(url, json=payload)
+
+    # JSONPlaceholder accepts invalid payloads (mock API behavior)
+    assert response.status_code == 201
+
+    data = response.json()
+
+    # mock API echoes our fields
+    assert data["name"] == payload["name"]
+    assert data["username"] == payload["username"]
+
+    # email should not suddenly appear if we didn't send it
+    assert "email" not in data
