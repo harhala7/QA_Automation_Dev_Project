@@ -1,29 +1,45 @@
-from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import TimeoutException
+
 
 class BasePage:
-
-    def __init__(self, driver):
+    def __init__(self, driver, timeout: int = 10):
         self.driver = driver
+        self.wait = WebDriverWait(driver, timeout)
 
-    def open_url(self, url: str):
-        self.driver.get(url)
+    def click(self, locator):
+        element = self.wait.until(EC.element_to_be_clickable(locator))
+        element.click()
 
-    def click(self, locator: tuple[By, str]):
-        self.driver.find_element(*locator).click()
+    def type(self, locator, text: str):
+        element = self.wait.until(EC.visibility_of_element_located(locator))
+        element.clear()
+        element.send_keys(text)
 
-    def wait_and_click(self, locator: tuple[By, str], timeout=10):
-        WebDriverWait(self.driver, timeout).until(
-            EC.element_to_be_clickable(locator)
-        ).click()
+    def get_text(self, locator) -> str:
+        element = self.wait.until(EC.visibility_of_element_located(locator))
+        return element.text
 
-    def type(self, locator: tuple[By, str], text: str):
-        self.driver.find_element(*locator).send_keys(text)
+    def find(self, locator):
+        return self.wait.until(EC.presence_of_element_located(locator))
 
-    def get_text(self, locator: tuple[By, str]) -> str:
-        return self.driver.find_element(*locator).text
+    def find_visible(self, locator):
+        return self.wait.until(EC.visibility_of_element_located(locator))
 
-    def is_element_visible(self, locator: tuple[By, str]) -> bool:
-        return len(self.driver.find_elements(*locator)) > 0
+    def find_all(self, locator):
+        return self.wait.until(EC.presence_of_all_elements_located(locator))
 
+    def is_visible(self, locator) -> bool:
+        try:
+            self.wait.until(EC.visibility_of_element_located(locator))
+            return True
+        except TimeoutException:
+            return False
+
+    def wait_for_url_contains(self, text: str) -> bool:
+        try:
+            self.wait.until(EC.url_contains(text))
+            return True
+        except TimeoutException:
+            return False

@@ -8,10 +8,9 @@ class LoginPageV2(BasePage):
     USERNAME = (By.ID, "user-name")
     PASSWORD = (By.ID, "password")
     LOGIN_BUTTON = (By.ID, "login-button")
-    INVENTORY_TITLE = (By.CLASS_NAME, "title")
 
     def open(self):
-        self.open_url(self.URL)
+        self.driver.get(self.URL)
 
     def login(self, username: str, password: str):
         self.type(self.USERNAME, username)
@@ -19,4 +18,4 @@ class LoginPageV2(BasePage):
         self.click(self.LOGIN_BUTTON)
 
     def is_on_inventory_page(self) -> bool:
-        return self.is_element_visible(self.INVENTORY_TITLE)
+        return self.wait_for_url_contains("inventory.html")
