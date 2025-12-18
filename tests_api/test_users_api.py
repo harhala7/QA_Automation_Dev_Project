@@ -89,3 +89,15 @@ def test_create_user_without_email_mock_api_accepts_payload(base_url):
 
     # email should not suddenly appear if we didn't send it
     assert "email" not in data
+
+def test_get_user_schema_is_valid(base_url):
+    url = f"{base_url}/users/1"
+    response = requests.get(url)
+
+    assert response.status_code == 200
+    data = response.json()
+
+    assert isinstance(data["id"], int)
+    assert isinstance(data["name"], str)
+    assert isinstance(data["username"], str)
+    assert isinstance(data["email"], str)
