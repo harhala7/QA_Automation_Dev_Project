@@ -126,3 +126,19 @@ from fast CI pipelines and executed in dedicated environments.
 - Pytest fixtures and test organization
 - Debugging and handling real-world automation issues
 - Conscious CI design decisions (speed vs stability trade-offs)
+
+
+## API Tests
+
+API tests are implemented using **pytest** and **requests**.
+
+Covered scenarios:
+- GET users (happy path)
+- GET invalid user (404)
+- POST user creation
+- Negative scenarios (mock API behavior)
+- Response schema validation
+
+Run locally:
+```bash
+pytest tests_api
