@@ -1,4 +1,4 @@
-[![API Tests](https://github.com/harhala7/QA_Automation_Dev_Project/actions/workflows/api-tests.yml/badge.svg)](https://github.com/harhala7/QA_Automation_Dev_Project/actions/workflows/api-tests.yml)
+[![Selenium Tests (CI-safe)](https://github.com/harhala7/QA_Automation_Dev_Project/actions/workflows/python-tests.yml/badge.svg)](https://github.com/harhala7/QA_Automation_Dev_Project/actions/workflows/python-tests.yml)
 
 # Selenium Test Automation – Saucedemo
 
