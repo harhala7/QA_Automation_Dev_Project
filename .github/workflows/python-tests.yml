@@ -1,4 +1,4 @@
-name: Run basic Python tests
+name: Selenium Tests (CI-safe)
 
 on:
   push:

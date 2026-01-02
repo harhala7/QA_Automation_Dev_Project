@@ -27,6 +27,9 @@ conftest.py   # Browser and test fixtures
 ## How to run tests locally
 ```bash
 python -m venv venv
+venv\Scripts\activate #windows
+# source venv/bin/activate #Linux/MacOS
+
 pip install -r requirements.txt
 pytest -s
 ```
@@ -40,4 +43,3 @@ pytest -s
 ## API testing
 API and contract testing are covered in a separate dedicated repository:
 https://github.com/harhala7/QA_API_Contracts_Project
-
